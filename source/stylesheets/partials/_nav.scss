@@ -1,10 +1,27 @@
 nav {
+  @include outer-container;
   border-bottom: 1px solid $base-border-color;
   margin: em(30) 0;
 
   ul {
     display: inline-block;
     margin-bottom: em(10);
+    li {
+      display: inline-block;
+    }
+  }
+
+  .left {
+    @include span-columns(8 of 12);
+  }
+
+  .right {
+    @include span-columns(4 of 12);
+  }
+
+  img {
+    width: em(50);
+    color: #303030;
   }
 }
 
