@@ -1,0 +1,21 @@
+---
+layout: default
+title: Almace Scaffolding
+permalink: /
+---
+
+<article>
+
+  <!-- Post title -->
+  <header>
+    <h1 class=amsf-title>
+      Sébastien Rannou
+    </h1>
+
+    <small>a.k.a. <b>mxs</b>&#x30FB;ver. <b>0.0.17</b>&#x30FB;view it on <a href="https://github.com/sparanoid/almace-scaffolding">GitHub</a></small>
+  </header>
+
+  {% for post in site.categories.note %}
+    {% include page-item.html %}
+  {% endfor %}
+</article>
