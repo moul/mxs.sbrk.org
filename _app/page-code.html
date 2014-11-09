@@ -1,0 +1,12 @@
+---
+layout: page
+title: code
+permalink: /code/
+desc: <b>or </b> how to follow the white rabbit
+---
+
+<article>
+  {% for post in site.categories.code %}
+    {% include page-item.html %}
+  {% endfor %}
+</article>

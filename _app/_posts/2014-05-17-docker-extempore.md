@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Streaming Extempore
-categories: code, news
+categories: [code, news]
 plugin: intense
 hidden: true
 ---
