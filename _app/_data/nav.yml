@@ -15,8 +15,8 @@
   cate:  photo
 
 - title: ">"
-  url:   /note/
-  cate:  note
+  url:   /writings/
+  cate:  writings
 
 - title: ";"
   url:   /code/

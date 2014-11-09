@@ -1,0 +1,12 @@
+---
+layout: page
+title: writings
+permalink: /writings/
+desc: <b>words</b>, lots of words
+---
+
+<article>
+  {% for post in site.categories.writings %}
+    {% include page-item.html %}
+  {% endfor %}
+</article>
