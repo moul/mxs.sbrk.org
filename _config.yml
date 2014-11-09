@@ -47,7 +47,7 @@ redcarpet:
 name:           Almace Scaffolding
 
 # Site description, will appear in the document meta and Atom feed subtitle
-description:    I make things that don’t suck.
+description:    I make things.
 
 # Base URL, this is useful when I need to build site in a sub-directory (like GitHub Pages for Projects), it provides a specific URL prefix, for example, if the production site URL is http://sparanoid.com/lab/version/, set `base` to `/lab/version/24`, without trailing slash.
 # Default:      null
@@ -65,10 +65,10 @@ feed:           /feed
 url:            http://techno.sbrk.org
 
 # Media assets URL used in posts, without trailing slash. ie. `<img href="{{ site.file }}/image.png">`. In the most cases this URL should be powered by a CDN provider
-file:           http://mxs.sbrk.org/static
+file:           http://techno.sbrk.org
 
 # Download files URL used in posts, ie. href="{{ site.download }}/package.zip", this should also be a CDN link just like `site.url`. There's no differences in `site.url` and `site.download`, I just use one CDN for post images and another for large download files. That's it. Remove or ignore this if you don't need it
-download:       http://mxs.sbrk.org/data
+download:       http://techno.sbrk.org/data
 
 # User related information
 # {{ site.profile.user }}: author name, used in post pages, and atom feed

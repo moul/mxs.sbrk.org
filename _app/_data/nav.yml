@@ -1,27 +1,23 @@
-- title: Home
+- title: "S"
   url:   /
   cate:  home
 
-- title: About
+- title: "!"
   url:   /about/
   cate:  about
 
-- title: Projects
+- title: "J"
   url:   /projects/
   cate:  projects
 
-- title: Photo
+- title: "Í"
   url:   /photo/
   cate:  photo
 
-- title: Note
+- title: ">"
   url:   /note/
   cate:  note
 
-- title: Code
+- title: ";"
   url:   /code/
   cate:  code
-
-- title: Music
-  url:   /music/
-  cate:  music
