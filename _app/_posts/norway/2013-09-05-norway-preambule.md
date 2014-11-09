@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "préambule"
+title: préambule
 category: norway
 plugin: intense
 ---
@@ -8,11 +8,11 @@ plugin: intense
 Jeudi 5 Septembre 2013, à peu près 2 heures du matin et mon sac est
 enfin prêt après avoir esquivé à plusieurs reprises de le remplir (il
 doit y avoir une relation assez simple entre le niveau de ma bière et
-de mon sac, une fois vidée mon sac est plein). Nos deux sacs font
+celui du sac : une fois vidée le sac est plein). Nos deux sacs font
 environs 15kg chacun et en théorie devraient couvrir les 12 jours qui
 nous attendent au milieu de nulle part (nulle part étant
 approximativement dans les régions montagneuses du centre de la
-Norvège ou s'étend le parc national de Dovrefjell). Beaucoup
+Norvège où s'étend le parc national de Dovrefjell). Beaucoup
 d'interrogations à propos de nulle part. Va-t-il faire -5°C ou bien
 10°C? Y-a-t-il des gens? Y-a-t-il des ours? Si oui combien? Le fait
 qu'il n'y ait pas de gens est-il lié au fait qu'il y ait des ours?
@@ -22,7 +22,7 @@ tenterons de résoudre tous ces mystères.
 
 On est toujours à Paris et je me réveille vers 7h30, Faltad se
 réveille 30 secondes, le temps de lancer la commande magique !fz de
-m1ch3l (le robot IRC le plus intelligent de ##sbrk, par pure
+m1ch3l (le robot IRC le plus intelligent de `##sbrk`, par pure
 coïncidence c'est aussi le seul) pour vérifier la météo en haut du
 Snøhetta, une des montagnes faisant partie de nos
 objectifs. Apparement rassuré, Faltad se rendort pour quelques

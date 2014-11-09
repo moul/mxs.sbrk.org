@@ -1,23 +1,23 @@
 - title: "S"
   url:   /
-  cate:  home
+  cate:  [home]
 
 - title: "!"
   url:   /about/
-  cate:  about
+  cate:  [about]
 
 - title: "J"
   url:   /projects/
-  cate:  projects
+  cate:  [projects]
 
 - title: "Í"
   url:   /photo/
-  cate:  photo
+  cate:  [photo]
 
 - title: ">"
   url:   /writings/
-  cate:  writings
+  cate:  [writings, norway]
 
 - title: ";"
   url:   /code/
-  cate:  code
+  cate:  [code]
