@@ -1,9 +1,10 @@
 ---
 layout: post
-title: préambule
+title: l'instant norvégien
 category: norway
 plugin: intense
-desc: jour 0
+desc: jour 0, préambule
+alt-title: préambule
 ---
 
 Jeudi 5 Septembre 2013, à peu près 2 heures du matin et mon sac est
