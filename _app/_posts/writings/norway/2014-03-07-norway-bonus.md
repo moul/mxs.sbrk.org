@@ -49,10 +49,10 @@ vie. En attendant, voici une compilation:
 	<img src="/assets/img/norway/pieds.gif" alt="des pieds" />
 </center>
 
-## Er Faltad
+## Herr Faltad
 
 On continue dans la série des trucs inquiétants, Faltad se baladait
-avec un lego qu'il appelait Er Faltad, le voici:
+avec un lego qu'il appelait Herr Faltad, le voici:
 
 ![Image](/assets/img/norway/bonus-er-faltad-big.jpg)
 

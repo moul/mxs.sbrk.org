@@ -20,7 +20,7 @@ permalink: /feed/index.xml
     <email>{{ site.profile.email }}</email>
   </author>
 
-  {% for post in site.posts limit:300 %}
+  {% for post in site.categories.news limit:300 %}
     {% if post.hidden != true %}
       {% if site.link_blog and post.link %}
         {% assign entry_link = post.link %}
