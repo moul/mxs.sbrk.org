@@ -1,0 +1,12 @@
+---
+layout: page
+title: Projects
+permalink: /projects/
+desc: there's a difference between knowing the path and <b>walking</b> the path
+---
+
+<article>
+  {% for post in site.categories.project %}
+    {% include page-item.html %}
+  {% endfor %}
+</article>
