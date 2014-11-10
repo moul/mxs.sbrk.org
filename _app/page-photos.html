@@ -1,0 +1,20 @@
+---
+layout: page
+title: Photography
+permalink: /photography/
+desc: <b>let's</b> catch some light
+---
+
+<p class="note page-intro">
+  Your first 10 000 photographs are your worst.
+</p>
+
+<small class="page-intro">
+  <a href="http://en.wikipedia.org/wiki/Henri_Cartier-Bresson">Henry Cartier-Bresson</a>
+</small>
+
+<article>
+  {% for post in site.categories.photo %}
+    {% include page-item.html %}
+  {% endfor %}
+</article>
