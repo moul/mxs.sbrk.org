@@ -19,7 +19,7 @@ layout: default
 {% capture image_header %}
   <img
     src="{{ site.file }}/{{ page.img-headline }}"
-    alt="{{ page.title | strip_html | xml_escape }}"
+    alt="{{ page.title | strip_html | xml_escape | downcase }}"
     {% if page.img-headline-width %}
       style="width: {{ page.img-headline-width | times: 0.1 }}vw;"
     {% else %}
@@ -74,9 +74,9 @@ layout: default
     {% else %}
       <h1>
         {% if page.link %}
-          <a href="{{ page.link }}" class=external>{{ page.title }} <span></span></a>
+          <a href="{{ page.link }}" class=external>{{ page.title | downcase }} <span></span></a>
         {% else %}
-          {{ page.title }}
+          {{ page.title | downcase }}
         {% endif %}
       </h1>
     {% endif %}
