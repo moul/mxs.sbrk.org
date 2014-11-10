@@ -1,10 +1,8 @@
 ---
-layout: post
-title: l'instant norvégien
+layout: post-norway
+title: charles ingalls
 category: norway
 plugin: intense
-desc: jour 5, charles ingalls
-alt-title: charles ingalls
 ---
 
 Il fait beau et on décampe assez tard après avoir lavé quelques

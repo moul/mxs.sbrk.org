@@ -1,10 +1,8 @@
 ---
-layout: post
-title: l'instant norvégien
+layout: post-norway
+title: dinosaurus
 category: norway
 plugin: intense
-desc: jour 3, dinosaurus
-alt-title: dinosaurus
 ---
 
 Je me réveille à 6h30 au milieu des nuages: il fait jour mais je ne

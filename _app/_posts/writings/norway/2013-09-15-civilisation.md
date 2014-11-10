@@ -1,10 +1,8 @@
 ---
-layout: post
-title: l'instant norvégien
+layout: post-norway
+title: civilisation
 category: norway
 plugin: intense
-desc: jour 10, civilisation
-alt-title: civilisation
 ---
 
 Le vent a soufflé toute la nuit, et ça continue au réveil: mes

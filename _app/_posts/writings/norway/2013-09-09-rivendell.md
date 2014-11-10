@@ -1,10 +1,8 @@
 ---
-layout: post
-title: l'instant norvégien
+layout: post-norway
+title: rivendell
 category: norway
 plugin: intense
-desc: jour 4, rivendell
-alt-title: rivendell
 ---
 
 Mes notes sur cette cinquième journée commencent par:

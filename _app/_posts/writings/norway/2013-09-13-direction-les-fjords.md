@@ -1,10 +1,8 @@
 ---
-layout: post
-title: l'instant norvégien
+layout: post-norway
+title: vers les fjords
 category: norway
 plugin: intense
-desc: jour 8, vers les fjords
-alt-title: vers les fjords
 ---
 
 On prend un méga petit déjeuner avant de remballer et de se diriger

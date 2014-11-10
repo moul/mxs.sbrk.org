@@ -24,7 +24,7 @@
     {% endcapture %}
 
     <!-- Item title -->
-    <a href="{{ post.url | prepend: site.base }}" {% if site.colorful_list %}{{ post_link_color }}{% endif %}>{% if post.alt-title %}{{ post.alt-title | downcase }}{% else %}{{ post.title | downcase }}{% endif %}</a>
+    <a href="{{ post.url | prepend: site.base }}" {% if site.colorful_list %}{{ post_link_color }}{% endif %}>{{ post.title | downcase }}</a>
 
     <!-- External link indicator -->
     {% if post.link %}

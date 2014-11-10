@@ -81,7 +81,7 @@ layout: default
       </h1>
     {% endif %}
 
-    {% if page.desc %}<small>{{ page.desc }}</small>{% endif %}
+    <small>{{ page.date | date: "%-d %B %Y"}}{% if page.desc %} <b>{{ page.desc }}</b>{% endif %}</small>
   </header>
 
   <!-- Post content -->

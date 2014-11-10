@@ -1,13 +1,11 @@
 ---
-layout: post
-title: l'instant norvégien
+layout: post-norway
+title: retour à la case départ
 category: norway
 plugin: intense
-desc: jour 11 & 12, retour à la case départ
-alt-title: retour à la case départ
 ---
 
-## Jour 11: Plic
+## jour 11: plic
 
 Avant dernière journée sur laquelle j'ai peu à raconter car on a pas
 fait grand chose à cause de la pluie, mon carnet illustre plutôt bien
@@ -23,7 +21,7 @@ chance d'avoir eu du beau temps pendant 90% du voyage.
 
 ![Image](/assets/img/norway/jour11-weird.jpg)
 
-## Jour 12: Ploc
+## jour 12: ploc
 
 Après la super journée d'hier où on a rien fait, on remballe le
 matériel pour prendre le train de retour qui nous amènera à Oslo où

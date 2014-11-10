@@ -1,10 +1,8 @@
 ---
-layout: post
-title: l'instant norvégien
+layout: post-norway
+title: bonus
 category: norway
 plugin: intense
-desc: bonus
-alt-title: bonus
 ---
 
 Quelques bonus, en vrac.
