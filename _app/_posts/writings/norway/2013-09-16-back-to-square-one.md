@@ -5,8 +5,6 @@ category: norway
 plugin: intense
 ---
 
-## jour 11: plic
-
 Avant dernière journée sur laquelle j'ai peu à raconter car on a pas
 fait grand chose à cause de la pluie, mon carnet illustre plutôt bien
 cet échec:
@@ -20,8 +18,6 @@ vue de la pluie sur les derniers jours, on se dit qu'on a eu de la
 chance d'avoir eu du beau temps pendant 90% du voyage.
 
 ![Image](/assets/img/norway/jour11-weird.jpg)
-
-## jour 12: ploc
 
 Après la super journée d'hier où on a rien fait, on remballe le
 matériel pour prendre le train de retour qui nous amènera à Oslo où

@@ -92,12 +92,6 @@
   }
 }
 
-.amsf-title {
-  display: inline-block;
-  color: @link-color;
-  vertical-align: middle;
-}
-
 .huge-tild {
   text-align: center;
   font-size: 404%;
@@ -127,7 +121,18 @@
    top: 0.1em;
 }
 
-// Override the default theme
+// Index
+.content {
+  header h1.amsf-title b a {
+    color: @text-color;
+    font-size: 0.9em;
+  }
+  header h1.amsf-title b a:hover {
+    color: @link-color;
+    border-bottom: none;
+  }
+}
+
 .navigation {
    li {
       a {
@@ -139,11 +144,5 @@
    margin-right: 0;
    .icon {
        font-size: 404%;
-   }
-}
-
-header {
-   .icon {
-       font-size: 242%;
    }
 }
