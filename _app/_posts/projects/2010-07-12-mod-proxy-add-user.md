@@ -1,8 +1,7 @@
 ---
 layout: post
 title: mod-proxy-add-user
-categories: [project]
-plugin: intense
+categories: [project, news]
 link: https://github.com/aimxhaisse/mod-proxy-add-user
 ---
 
