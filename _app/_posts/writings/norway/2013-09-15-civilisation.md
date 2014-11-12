@@ -1,7 +1,7 @@
 ---
 layout: post-norway
 title: civilisation
-category: norway
+categories: [news, norway]
 plugin: intense
 ---
 
@@ -79,3 +79,6 @@ Il pleut toujours et il commence à faire nuit, on se redirige vers la
 forêt où on a commencé l'aventure, sur le passage je trouve des bois
 de rennes, mais comme ils font 4/5 kilos, je me dis que ce n'est pas
 la peine d'espérer les ramener dans l'avion, dommage.
+
+
+[La suite par ici...]({% post_url writings/norway/2013-09-16-back-to-square-one %})

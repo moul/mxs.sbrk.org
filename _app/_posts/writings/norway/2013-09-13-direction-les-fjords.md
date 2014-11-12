@@ -1,7 +1,7 @@
 ---
 layout: post-norway
 title: vers les fjords
-category: norway
+categories: [news, norway]
 plugin: intense
 ---
 
@@ -70,3 +70,6 @@ s'endormir sous la pluie, en espérant ne pas se réveiller mouillés au
 petit matin (niark niark niark niark).
 
 ![Image](/assets/img/norway/jour8-miam.jpg)
+
+
+[La suite par ici...]({% post_url writings/norway/2013-09-14-pizza %})

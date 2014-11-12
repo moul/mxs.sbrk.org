@@ -1,7 +1,7 @@
 ---
 layout: post-norway
 title: charles ingalls
-category: norway
+categories: [news, norway]
 plugin: intense
 ---
 
@@ -146,3 +146,6 @@ d'une ville située à 13 cases sur la carte (à vol d'oiseau environs 25
 kilomètres, mais comme on est pas des oiseaux ça sera beaucoup plus).
 
 ![Image](/assets/img/norway/jour5-reflexion.jpg)
+
+
+[La suite par ici...]({% post_url writings/norway/2013-09-11-shortcut %})

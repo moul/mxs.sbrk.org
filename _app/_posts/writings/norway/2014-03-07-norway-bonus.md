@@ -1,7 +1,7 @@
 ---
 layout: post-norway
 title: bonus
-category: norway
+categories: [news, norway]
 plugin: intense
 ---
 

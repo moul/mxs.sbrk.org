@@ -1,7 +1,7 @@
 ---
 layout: post-norway
 title: rivendell
-category: norway
+categories: [news, norway]
 plugin: intense
 ---
 
@@ -68,3 +68,5 @@ du bois et non avec des racines humides comme depuis le début, ça
 fonctionne mieux).
 
 ![Image](/assets/img/norway/jour4-vallee.jpg)
+
+[La suite par ici...]({% post_url writings/norway/2013-09-10-charles-ingalls %})

@@ -1,7 +1,7 @@
 ---
 layout: post-norway
 title: préambule
-category: norway
+categories: [news, norway]
 plugin: intense
 ---
 
@@ -102,3 +102,5 @@ Note pour le Sébastien du futur qui relira peut-être ces mots: quand
 on se brosse les dents avec une lampe frontale de nuit, ne pas plonger
 la tête sous l'eau pour se rincer la bouche, ça peut faire des
 chocapics.
+
+[La suite par ici...]({% post_url writings/norway/2013-09-06-beeeeeh %})

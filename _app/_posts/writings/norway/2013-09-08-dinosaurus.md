@@ -1,7 +1,7 @@
 ---
 layout: post-norway
 title: dinosaurus
-category: norway
+categories: [news, norway]
 plugin: intense
 ---
 
@@ -121,3 +121,6 @@ le coucher de soleil, c'est cool. Sans vent, ça serait magique. À
 21h30 on est dans la tente pour faire un point carte et écrire un
 peu. Le premier objectif du voyage est rempli, et on ne sait pas trop
 à quoi va ressembler la suite.
+
+
+[La suite par ici...]({% post_url writings/norway/2013-09-09-rivendell %})

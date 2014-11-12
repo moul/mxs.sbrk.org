@@ -1,7 +1,7 @@
 ---
 layout: post-norway
 title: retour à la case départ
-category: norway
+categories: [news, norway]
 plugin: intense
 ---
 
@@ -66,3 +66,6 @@ Les derniers mots sur mon carnet sont:
 
 > Les Norvégiens ont des casquettes. Et des trampolines bleus. Et de
 > grandes maisons.
+
+
+[La suite par ici...]({% post_url writings/norway/2014-03-07-norway-bonus %})
