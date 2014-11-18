@@ -2,7 +2,6 @@
 layout: post
 title: Archlinux Arm on IGEPv2
 categories: [code, news]
-plugin: intense
 ---
 
 Just a few notes about the installation of [ArchLinuxARM](http://archlinuxarm.com)

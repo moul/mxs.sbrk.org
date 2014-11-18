@@ -2,8 +2,6 @@
 layout: post
 title: backup files with hdup
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 ## Introduction

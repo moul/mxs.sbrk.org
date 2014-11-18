@@ -2,8 +2,6 @@
 layout: post
 title: install netsoul on ubuntu
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 There is a pidgin plugin for netsoul, its installation is made for

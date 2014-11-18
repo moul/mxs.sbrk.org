@@ -2,8 +2,6 @@
 layout: post
 title: My Laptop is Burning
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 I have a laptop with hybrid ATI GPUs, without the proprietary ATI

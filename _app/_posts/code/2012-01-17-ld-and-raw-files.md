@@ -2,8 +2,6 @@
 layout: post
 title: include raw files with ld
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 As far as I know, there's no direct way to include a raw file with ld,

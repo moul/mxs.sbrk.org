@@ -2,8 +2,6 @@
 layout: post
 title: Inheritance level in C++
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 I've been looking for a way to know the level of a class in an

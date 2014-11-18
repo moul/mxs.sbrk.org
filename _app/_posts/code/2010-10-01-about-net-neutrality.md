@@ -2,8 +2,6 @@
 layout: post
 title: About Net Neutrality
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 I've been writing [a short response](/assets/net_neutrality.pdf) to

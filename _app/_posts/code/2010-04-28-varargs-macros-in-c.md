@@ -2,8 +2,6 @@
 layout: post
 title: Variadic Arguments in C Macros
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 It is possible to wrap a variadic function in C, using some facilities

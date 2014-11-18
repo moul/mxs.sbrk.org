@@ -3,7 +3,6 @@ layout: post
 title: streaming extempore
 categories: [code, news]
 plugin: intense
-hidden: true
 ---
 
 Lately I've been playing with

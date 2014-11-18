@@ -2,8 +2,6 @@
 layout: post
 title: About Boost Test
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 [Boost](http://www.boost.org/) provides a [unit test framework](http://www.boost.org/doc/libs/1_40_0/libs/test/doc/html/index.html) which makes it possible to ensure

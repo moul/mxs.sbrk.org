@@ -2,7 +2,6 @@
 layout: post
 title: PHP and boolean settings
 categories: [code, news]
-plugin: intense
 ---
 
 Retrieving settings from PHP's configuration seems straightforward at

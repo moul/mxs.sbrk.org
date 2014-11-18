@@ -2,8 +2,6 @@
 layout: post
 title: Notes about LUKS
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 Some notes about basic usage with Luks.

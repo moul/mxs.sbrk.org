@@ -2,7 +2,6 @@
 layout: post
 title: Weird Randomness
 categories: [code, news]
-plugin: intense
 ---
 
 I've been struggling for a while with a strange bug that I'd like to

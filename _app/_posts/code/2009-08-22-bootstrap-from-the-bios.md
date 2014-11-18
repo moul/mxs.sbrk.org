@@ -2,8 +2,6 @@
 layout: post
 title: Boostrapping from the BIOS
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 The BIOS is the first code running on a computer at start-up, it

@@ -3,7 +3,6 @@ layout: post
 title: pretty dmesg
 categories: [code, news]
 plugin: intense
-hidden: true
 ---
 
 By default, the date in `dmesg`'s output is a bit cryptic, it is

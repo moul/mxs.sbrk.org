@@ -2,8 +2,6 @@
 layout: post
 title: FreeBSD and Jails
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 The jail system is a specific feature of FreeBSD that adds a level of

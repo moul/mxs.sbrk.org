@@ -2,8 +2,6 @@
 layout: post
 title: Backtracing C function calls
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 The goal of this page is to show how to backtrace C function calls.

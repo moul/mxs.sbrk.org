@@ -2,8 +2,6 @@
 layout: post
 title: how to create a PHP extension
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 There's an easy way to embed C code into PHP by creating extensions.

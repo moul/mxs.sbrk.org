@@ -2,8 +2,6 @@
 layout: post
 title: Void Casts in C++
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 Sometimes, casting a `void*` in C++ is necessary, unfortunately, this

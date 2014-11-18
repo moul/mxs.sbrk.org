@@ -2,8 +2,6 @@
 layout: post
 title: flymake and emacs
 categories: [code, news]
-plugin: intense
-hidden: true
 ---
 
 Emacs doesn't handle by default error detection *on the fly* like some
