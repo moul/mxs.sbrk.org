@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+        <channel>
+                <title>MxS' area</title>
+                <description>Here I should add a cool description, but I won't.</description>
+                <link>http://mxs.sbrk.org</link>
+                <atom:link href="http://mxs.sbrk.org/feed.xml" rel="self" type="application/rss+xml" />
+                
+                        <item>
+                                <title>Streaming Extempore through HTTP</title>
+                                <description>&lt;p&gt;Lately I&amp;#39;ve been playing with
+&lt;a href=&quot;http://extempore.moso.com.au/&quot;&gt;Extempore&lt;/a&gt;, an environment to play
+live music using Scheme and a DSL (xtlang) ; there are
+&lt;a href=&quot;https://www.youtube.com/watch?v=GSGKEy8vHqg&quot;&gt;some&lt;/a&gt;
+&lt;a href=&quot;http://benswift.me/2013/12/16/new-screencast-asmodeus-redux/&quot;&gt;cool&lt;/a&gt;
+&lt;a href=&quot;http://benswift.me/2014/02/17/new-screencast-another-late-christmas/&quot;&gt;screencasts&lt;/a&gt;
+on the web that convinced me it was what I wanted to try
+next. Unfortunately my laptop is too slow for this, so I wanted to use
+my server instead, which has a better CPU (audio processing is CPU
+bound).&lt;/p&gt;
+
+&lt;p&gt;The idea is to run Extempore inside a &lt;a href=&quot;https://docker.io/&quot;&gt;Docker&lt;/a&gt;
+container, connect the Extempore process to a Jack server with a dummy
+driver (as there&amp;#39;s no easy way to access the audio card from the
+container), and then, use VLC and its plugin for Jack to export the
+audio stream as HTTP.&lt;/p&gt;
+
+&lt;p&gt;The cool thing is that it becomes very easy to share what you are
+doing with friends: just open the HTTP link with a decent audio player
+(though in my case, it does not worth it). Also, you can easily having
+several performers from different places in the world hacking the
+current session at the same time.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;ve dockerized everything so I can reuse this setup without trouble
+on other computers, also, if someone is interested in this approach,
+she/he can reuse without it burning too much time.&lt;/p&gt;
+
+&lt;p&gt;The workflow becomes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;start the Docker container,&lt;/li&gt;
+&lt;li&gt;start an audio player and connect to the live HTTP stream,&lt;/li&gt;
+&lt;li&gt;fire-up Emacs and connect to extempore,&lt;/li&gt;
+&lt;li&gt;have fun!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here&amp;#39;s a quick guide to get your hands dirty, assuming you have a
+Linux with Docker installed:&lt;/p&gt;
+
+&lt;h2&gt;Pull the Container&lt;/h2&gt;
+
+&lt;p&gt;We first have to download the container:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker pull aimxhaisse/docker-extempore
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Start the Docker Container&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;docker run -p 8080:8080 -p 7099:7099 aimxhaisse/docker-extempore
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The Docker container has a virtual IP address which is accessible from
+the host, as I want to access the port 8080 (to listen) and the port
+7099 (to connect my local emacs to extempore) from the outside, I
+publish these ports on the host interface.&lt;/p&gt;
+
+&lt;h2&gt;Start an audio player&lt;/h2&gt;
+
+&lt;p&gt;Quite straightforward:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cvlc http://mxs.sbrk.org:8080/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Connect to the Server&lt;/h2&gt;
+
+&lt;p&gt;Nothing new here: ctrl+j to connect, specify the expected host, and
+that&amp;#39;s it.&lt;/p&gt;
+
+&lt;h2&gt;Extra Notes&lt;/h2&gt;
+
+&lt;p&gt;I plan to keep this Docker image up-to-date with the latest changes
+available on Extempore, if it appears to be a lie when you read this
+line, do not hesitate to drop me an e-mail.&lt;/p&gt;
+
+&lt;p&gt;Among the future changes that I might add :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Preloading of instruments.xtm to avoid waiting a few minutes before having funm&lt;/li&gt;
+&lt;li&gt;A tiny HTTP interface so it can be streamed using a recent web browser,&lt;/li&gt;
+&lt;li&gt;Probably some tuning on the outputed stream,&lt;/li&gt;
+&lt;li&gt;Some helpers to load samples (by sharing a directory with the container).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Additional links&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://index.docker.io/u/aimxhaisse/docker-extempore/&quot;&gt;docker-extempore&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+                                <pubDate>Sat, 17 May 2014 00:00:00 +0200</pubDate>
+                                <link>http://mxs.sbrk.org//2014/05/17/docker-extempore.html</link>
+                                <guid isPermaLink="true">http://mxs.sbrk.org//2014/05/17/docker-extempore.html</guid>
+                        </item>
+                
+                        <item>
+                                <title>Bonus</title>
+                                <description>&lt;p&gt;Quelques bonus, en vrac.&lt;/p&gt;
+
+&lt;h2&gt;Des logs IRCs&lt;/h2&gt;
+
+&lt;p&gt;Ce moment débile où en 20 minutes, on a décidé de se lancer dans cette
+aventure:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;16:22:04     @Faltad_        J&amp;#39;aimerais bien faire un tour en Norvège un de ces jours
+16:22:13     @Faltad_        dans les montagnes au nord
+16:28:46     @ironzorg       prévois de l&amp;#39;argent :)
+16:28:59     @ironzorg       *beaucoup*
+16:29:31     @aimxhaisse     sauf si on pêche
+16:29:38     @Faltad_        trop
+16:40:33     @Faltad_        161 euros a/r de Hamburg-&amp;gt; Bergen
+16:40:41     @aimxhaisse     :D
+16:40:42     @aimxhaisse     banco
+16:57:00     @aimxhaisse     genre en août?
+16:57:40     @Faltad_        hm, septembre ca serait le tip top banane
+17:03:10     @ironzorg       dire que vous avez décidé tout ça en même pas 20 minutes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Toujours sur IRC, à force de regarder la météo en permanence pour se
+donner une idée des conditions climatiques, on a rajouté une commande
+sur m1ch3l (le super bot IRC), pour avoir une vague idée du temps:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;15:46:12     @mxs    !fz
+15:46:13     m1ch3l  mxs&amp;gt; M3t30 sn0hett@!i!i!i!i!
+15:46:13     m1ch3l  mxs&amp;gt; Freezing point: 3800 m
+15:46:13     m1ch3l  mxs&amp;gt; Accumulated rain: 6 mm
+15:46:13     m1ch3l  mxs&amp;gt; Accumulated snow: 0 cm
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Eikesdalen&lt;/h2&gt;
+
+&lt;p&gt;On a retrouvé une vidéo d&amp;#39;un Norvégien qui, en voiture, effectue le
+trajet inverse du jour 6 (celui où l&amp;#39;on a marché pas loin de 35km pour
+acheter du chocolat dans un magasin qui n&amp;#39;existait que sur la carte).
+Notre trajet correspond en gros aux 4 premières minutes.&lt;/p&gt;
+
+&lt;p&gt;&lt;iframe src=&quot;//player.vimeo.com/video/45398100&quot; width=&quot;628&quot; height=&quot;350&quot; frameborder=&quot;0&quot; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt; &lt;p&gt;&lt;a href=&quot;http://vimeo.com/45398100&quot;&gt;From Eikesdalen to Sunndalsøra&lt;/a&gt; de &lt;a href=&quot;http://vimeo.com/captainsvoyage&quot;&gt;Jan-Olav Storli&lt;/a&gt; on &lt;a href=&quot;https://vimeo.com&quot;&gt;Vimeo&lt;/a&gt;.&lt;/p&gt;&lt;/p&gt;
+
+&lt;h2&gt;Des pieds&lt;/h2&gt;
+
+&lt;p&gt;Pour une raison qui m&amp;#39;échappe aujourd&amp;#39;hui, je prenais quotidiennement
+mes pieds en photo. Peut-être qu&amp;#39;un jour le motif profond de ce
+comportement inquiétant m&amp;#39;apparaîtra, et alors me sera remis un objet
+de quète me permettant de faire des trucs cools et utiles de ma
+vie. En attendant, voici une compilation:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/norway/pieds.gif&quot; alt=&quot;des pieds&quot; /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Er Faltad&lt;/h2&gt;
+
+&lt;p&gt;On continue dans la série des trucs inquiétants, Faltad se baladait
+avec un lego qu&amp;#39;il appelait Er Faltad, le voici:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-er-faltad-big.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-er-faltad-big-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Quelques photos en vrac&lt;/h2&gt;
+
+&lt;p&gt;L&amp;#39;une des dernières traces de civilisation avant de rentrer dans le
+parc de Dovrefjell, un sentier permettait d&amp;#39;y accéder en
+voiture. C&amp;#39;était en pratique désert, on imagine que ce village n&amp;#39;était
+habité que l&amp;#39;été:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-village.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-village-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Le genre de paysage typique de Dovrejfell qu&amp;#39;on a connu pendant
+plusieurs jours, de la tundra rousse bordée de montagnes à perte de
+vue:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-tundra.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-tundra-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Les pokémons juste après qu&amp;#39;ils aient pris la fuite, ils nous ont
+regardé en comme ça pendant quelques minutes durant lesquelles on
+était pas vraiment en confiance:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-pokemon.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-pokemon-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Un peu plus tard dans la même journée, à proximité de Snøheim (où se
+trouve le refuge dans lequel on a mangé avant d&amp;#39;attaquer la monté du
+Snøhetta):&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-land.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-land-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Un des sentier aux alentours de Snøheim au petit matin où je me suis
+perdu, à moitié dans les nuages et les torrents:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-river.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-river-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Arrivés en haut du Snøhetta, on a du continuer sur une des crêtes de
+la montagne, le chemin de la carte correspond aux petits points rouges
+sur les cailloux:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-pastomber.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-pastomber-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Un peu après avoir passé la crête, la descente du Snøhetta qui fait
+mal aux genoux, on pensait naïvement en avoir pour 1 heure, en
+pratique on a mis près de 4 heures:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-cailloux.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-cailloux-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Faltad qui se désaltère dans un endroit plutôt sympa. On est en train
+de descendre la vallée, un peu avant d&amp;#39;arriver au village de Charles
+Ingalls:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-faltad-rivendell.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-faltad-rivendell-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Toujours dans la même vallée plutôt sympa, moi, après avoir mangé du
+chocolat:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-mxs.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-mxs-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;De nouveau de la tundra rousse, on vient de sortir d&amp;#39;une vallée sans
+végétation dans laquelle se trouvent des rennes (dont on n&amp;#39;a vu que
+des bois):&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-tundra-2.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-tundra-2-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Le village fantôme au petit matin à proximité duquel on a passé la
+nuit, silencieux et désert:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-lac.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-lac-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;La montée de la montagne dont le nom finit en bdu, perdue dans les
+nuages:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-fog.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-fog-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Quelques montagnes à proximité d&amp;#39;Isjforden, l&amp;#39;une des dernières vues
+sur les montagnes du voyage:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-montain.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-montain-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Et pour finir, les derniers dinosaurus, un peu amochés, après avoir
+vécu quelques jours tout au fond de mon sac:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/bonus-dinosaurus.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/bonus-dinosaurus-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+                                <pubDate>Fri, 07 Mar 2014 00:00:00 +0100</pubDate>
+                                <link>http://mxs.sbrk.org//norway/2014/03/07/norway-bonus.html</link>
+                                <guid isPermaLink="true">http://mxs.sbrk.org//norway/2014/03/07/norway-bonus.html</guid>
+                        </item>
+                
+                        <item>
+                                <title>Jours 11 &amp; 12: Retour à la case départ</title>
+                                <description>&lt;h2&gt;Jour 11: Plic&lt;/h2&gt;
+
+&lt;p&gt;Avant dernière journée sur laquelle j&amp;#39;ai peu à raconter car on a pas
+fait grand chose à cause de la pluie, mon carnet illustre plutôt bien
+cet échec:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour11-carnet.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour11-carnet-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Donc, probablement la journée la moins intéressante du voyage, on a
+mangé des trucs bizarres, dormi, lu, dormi, tourné en rond, mangé des
+trucs bizarres une nouvelle fois, et dormi. Rétrospectivement, à la
+vue de la pluie sur les derniers jours, on se dit qu&amp;#39;on a eu de la
+chance d&amp;#39;avoir eu du beau temps pendant 90% du voyage.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour11-weird.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour11-weird-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Jour 12: Ploc&lt;/h2&gt;
+
+&lt;p&gt;Après la super journée d&amp;#39;hier où on a rien fait, on remballe le
+matériel pour prendre le train de retour qui nous amènera à Oslo où
+nous attend un avion pour Paris. On fait le grand tri au milieu d&amp;#39;une
+clairière histoire d&amp;#39;éviter de devoir justifier à l&amp;#39;aéroport pourquoi
+on a des bouteilles de gaz, pourquoi on a des allumes feu, et pourquoi
+on a des têtes qui font peur.&lt;/p&gt;
+
+&lt;p&gt;J&amp;#39;en profite alors pour me laver dans le torrent, en fait il fait 7
+degrés et je suis glacé quelques minutes plus tard. On quitte la forêt
+pour retrouver la ville où on allège nos sacs en jetant les restes de
+riz rond à la poubelle, accompagné d&amp;#39;un long soupir: plus jamais.&lt;/p&gt;
+
+&lt;p&gt;On compare rapidement la couleur des arbres avec celle du début du
+voyage grâce à quelques photos qu&amp;#39;on avait prises alors, la différence
+est assez impressionante: on dirait qu&amp;#39;une saison est passée, les
+arbres sont devenus roux.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour11-river.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour11-river-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Arrivé à la gare, je me regarde dans une glace pour la première fois
+depuis 12 jours, et je fais peur: genre j&amp;#39;ai une moustache.&lt;/p&gt;
+
+&lt;p&gt;On prend le train pour Oslo ; comme à l&amp;#39;aller, on aura de l&amp;#39;attente
+arrivé à l&amp;#39;aéroport mais c&amp;#39;est au final une bonne chose car le train
+prend 1h de retard.  On a marché plus de 200km depuis le début à une
+vitesse de tortue comparé au train, on a l&amp;#39;impression qu&amp;#39;il va à 1000
+milliards de kilomètres par heure (intervention de
+&lt;a href=&quot;http://www.youtube.com/watch?v=GFvy1_EevwU#t=50&quot;&gt;Jamy&lt;/a&gt;: c&amp;#39;est
+impossible, même la lumière ne va pas aussi vite!).&lt;/p&gt;
+
+&lt;p&gt;Une fois à l&amp;#39;aéroport, on tourne un peu en rond, toutes ces aventures
+m&amp;#39;ont donné envie de lire Tolkien et j&amp;#39;y trouve une édition anglaise
+de LOTR.&lt;/p&gt;
+
+&lt;p&gt;On embarque dans l&amp;#39;avion, le steward est Norvégien mais parle
+français, on a une petite conversation avec lui, il a un accent assez
+marrant. Arrivés à Paris, après l&amp;#39;épreuve du RER dont je ne me
+souviens pas de grand chose, on prend une méga douche qu&amp;#39;on attendait
+depuis longtemps, suivi d&amp;#39;un MacDo (c&amp;#39;est mal, mais entre le riz rond
+et la désillusion d&amp;#39;Åndalsnes, on n&amp;#39;essaye même pas de luter). J&amp;#39;en
+profite pour perdre ma carte bleue, certains diront que je ne l&amp;#39;ai pas
+volé celle là.&lt;/p&gt;
+
+&lt;p&gt;Les derniers mots sur mon carnet sont:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Les Norvégiens ont des casquettes. Et des trampolines bleus. Et de
+grandes maisons.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+                                <pubDate>Mon, 16 Sep 2013 00:00:00 +0200</pubDate>
+                                <link>http://mxs.sbrk.org//norway/2013/09/16/back-to-square-one.html</link>
+                                <guid isPermaLink="true">http://mxs.sbrk.org//norway/2013/09/16/back-to-square-one.html</guid>
+                        </item>
+                
+                        <item>
+                                <title>Jour 10: Civilisation</title>
+                                <description>&lt;p&gt;Le vent a soufflé toute la nuit, et ça continue au réveil: mes
+chaussettes mouillées s&amp;#39;envolent direction Åndalsnes si je ne les pose
+pas sous un cailloux.  C&amp;#39;est désagréable de mettre un pantalon
+mouillé, des chaussettes mouillées, dans des chaussures mouillées,
+surtout quand à la fin, on s&amp;#39;aperçoit qu&amp;#39;on a mis son pantalon à
+l&amp;#39;envers.&lt;/p&gt;
+
+&lt;p&gt;Après ce réveil difficile vient le moment de plier la tente, et là, on
+met 10 fois plus de temps que d&amp;#39;habitude. On a peur de la voir
+s&amp;#39;échapper pour finir quelques kilomètres plus loin, donc on s&amp;#39;allonge
+dessus à tour de rôle pendant que l&amp;#39;autre la roule. De loin, on doit
+passer pour des bipèdes bizarres (de près aussi en fait).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour10-isfjorden.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour10-isfjorden-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On prend la direction d&amp;#39;Isforden qui est à 5km d&amp;#39;Åndalsnes. Il y a
+quelques éclaircies et le ciel est visible, c&amp;#39;est la classe (les
+nuages qui nous entouraient la veille ont disparu). La descente est
+pour une fois simple mais je réussi à me casser la gueule quand même.
+On retrouve des prairies, elles sont tellement balayées par le vent
+qu&amp;#39;elles ressemblent à une mer verte, en un peu moins bien quand même.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour10-fjord.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour10-fjord-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On arrive à Isforden où tout est fermé (on est Dimanche, mais on
+gardait secrètement un espoir de trouver quelque chose d&amp;#39;ouvert), les
+rues sont désertes et on ne croise pas beaucoup d&amp;#39;âmes. On longe le
+fjord pour rejoindre Åndalsnes, accompagnés par la pluie, l&amp;#39;odeur du
+sel marin, des mouettes, et des montagnes: tout ça en l&amp;#39;espace de
+quelques kilomètres, ça change des journées à marcher dans la tundra
+rousse. On fini par suivre une piste cyclable prise en sandwich entre
+une autoroute et un fjord.&lt;/p&gt;
+
+&lt;p&gt;La fatigue, la désillusion du Dimanche, la faim, ... tout ça contribue
+à expliquer notre réaction lorsque l&amp;#39;on découvre sur le bord de la
+route un bout de carton avec le logo McDonald&amp;#39;s dessus. Une lueur
+d&amp;#39;espoir renaît dans nos coeurs, accessoirement accompagnée d&amp;#39;un gros
+gargouilli. Ça nous remotive et on continue à allure plus vive.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour10-side.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour10-side-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Arrivés à Åndalsnes, pas de McDonald&amp;#39;s, mais on trouve le moyen de
+manger dans un &amp;quot;Kiosk&amp;quot; des trucs gras dont je n&amp;#39;ai pas pris la peine
+de noter ce que c&amp;#39;était, mais dont mon estomac se souvient, accompagné
+d&amp;#39;une boisson bizarre. On prend nos billets de train pour Dombås dans
+la foulée vu qu&amp;#39;ici c&amp;#39;est la civilisation et qu&amp;#39;on est devenus
+sauvages. On préfère trouver un endroit dans une forêt à proximité de
+Dombås.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour10-boat.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour10-boat-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Faltad achète 9 bolles (les gateaux à la canelle) à la gare &amp;quot;pour le
+soir&amp;quot;, 30 minutes plus tard, il n&amp;#39;en reste que la moitié.  On en a
+pour 1h20 de train, principalement occupé d&amp;#39;étudiants qui passaient le
+week-end dans leurs familles avant de probablement retourner sur
+Oslo. Le train longe la rivière de la Rauma, encadré de montagnes qui
+font peur (parmi lesquelles figure &lt;a href=&quot;http://www.youtube.com/watch?feature=player_detailpage&amp;amp;v=PCS2VeeQzo8#t=50&quot;&gt;Trollstigen&lt;/a&gt;, réputée pour le wingsuit).&lt;/p&gt;
+
+&lt;p&gt;On arrive à Dombås, avec un sentiment de nostalgie. Il pleut, on est
+mouillés, les arbres ont roussi depuis le départ, ça sent la fin du
+voyage, et ... ET! LE BUNNPRIS EST OUVERT! Je saute littéralement de
+joie sous la pluie en voyant la lumière du magasin. On court de peur
+qu&amp;#39;il ne ferme le temps qu&amp;#39;on arrive, et on y dépense nos dernières
+couronnes, pour changer dans des cookies, des chips, du chocolat, et
+pour vraiment changer, dans une boisson bizarre qui a l&amp;#39;air cool, des
+galettes norvégienne qui ressemblent à des galettes norvégienne, et du
+guacamol.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour10-champ.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour10-champ-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Il pleut toujours et il commence à faire nuit, on se redirige vers la
+forêt où on a commencé l&amp;#39;aventure, sur le passage je trouve des bois
+de rennes, mais comme ils font 4/5 kilos, je me dis que ce n&amp;#39;est pas
+la peine d&amp;#39;espérer les ramener dans l&amp;#39;avion, dommage.&lt;/p&gt;
+</description>
+                                <pubDate>Sun, 15 Sep 2013 00:00:00 +0200</pubDate>
+                                <link>http://mxs.sbrk.org//norway/2013/09/15/civilisation.html</link>
+                                <guid isPermaLink="true">http://mxs.sbrk.org//norway/2013/09/15/civilisation.html</guid>
+                        </item>
+                
+                        <item>
+                                <title>Jour 9: Pizza</title>
+                                <description>&lt;p&gt;Un réveil dans les nuages de plus au compteur ; il a plu une bonne
+partie de la nuit et on peut s&amp;#39;estimer heureux que la tente soit
+toujours sèche à l&amp;#39;intérieur. Ce sentiment d&amp;#39;avoir échappé au pire
+s&amp;#39;envole quand je commence à chercher mes chaussures, qui sont restées
+à l&amp;#39;extérieur de la tente. Dans la série Régis est un con... On fait
+un feu avec un gros tas racines qu&amp;#39;on a ramassé la veille en pensant
+alors faire un méga feu trop bien. On grille des saucisses en guise de
+petit déjeuner, puis on démonte la tente. Faltad pense qu&amp;#39;on a dormi
+sur des myrtilles (son tapis de sol est beaucoup plus sensible que le
+miens), on retourne la tente, effectivement, elle ressemble à une
+pizza sans fromage.&lt;/p&gt;
+
+&lt;p&gt;On part vers midi à l&amp;#39;assault d&amp;#39;une montagne dont le nom finit en
+&amp;quot;bdu&amp;quot;. On est dans les nuages et il fait toujours très gris, on ne
+voit pas très loin. Évidemment, je suis aigri car j&amp;#39;ai les pieds
+mouillés. On traverse une zone de marécages qui monte, et qui petit à
+petit, se transforme en pierrier.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour9-bdu.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour9-bdu-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Avec la pluie ça glisse dans tous les sens, on avance doucement. Par
+moments les nuages se découvrent pour laisser place à une vue
+magnifique, on est entourés de montagnes dont les pointes sont
+impressionantes. La fin de l&amp;#39;ascension fait mal partout, c&amp;#39;est aussi
+difficile que le Snøhetta quelques jours plus tôt, sans l&amp;#39;autre
+énergumène invisible qui semait des cacahuètes partout.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour9-topofthepop.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour9-topofthepop-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Au bout d&amp;#39;environs deux heures, on arrive en haut de la montagne qui
+se finit en &amp;quot;bdu&amp;quot; et on trouve deux petits refuges vides, ainsi que
+des toilettes (c&amp;#39;était pas le premier truc auquel on s&amp;#39;attendait). On
+marque une pause sur le pallier d&amp;#39;un des refuges, et on fait du thé à
+l&amp;#39;abris de la pluie verglacante qui tombe toujours. Après quelques
+cookies, on entame la descente qui est dangereuse: on voit à 10
+mètres, il pleut, ça glisse, il n&amp;#39;y a que des pierrers, et la pente
+est très raide, à la limite de l&amp;#39;escalade par moments. Au loin comme
+un coup de tonnerre, on entend un éboulement mais c&amp;#39;est impossible de
+savoir d&amp;#39;où ça vient avec les nuages. On arrive en bas deux heures
+plus tard, au pied d&amp;#39;un lac où Faltad fait du couscous au ketchup
+pendant que je pêche un peu.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour9-lac.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour9-lac-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On se dit alors qu&amp;#39;on a le temps d&amp;#39;aller jusqu&amp;#39;à Isforden, une des
+villes installée à l&amp;#39;extrémité d&amp;#39;un fjord, pas très loin de la gare
+d&amp;#39;Åndalsnes où un train nous attend. On longe le lac à coté duquel il
+y a quelques cabanes de pêcheurs. On croise une habitante d&amp;#39;une de ces
+cabanes à qui on dit bonjour, elle nous répond un truc qu&amp;#39;on ne
+comprend pas (probablement Frih Deh Bi De Uh), on fait comme si on
+avait compris, alors qu&amp;#39;elle sait très bien qu&amp;#39;on a rien capté, et
+qu&amp;#39;elle sait qu&amp;#39;on sait qu&amp;#39;elle sait qu&amp;#39;on a rien capté et STOP,
+t&amp;#39;arrête de romancer ce passage chiant TOUT DE SUITE.&lt;/p&gt;
+
+&lt;p&gt;On doit encore grimper pour passer de l&amp;#39;autre coté d&amp;#39;une des dernières
+difficultés du voyage, mais là encore, c&amp;#39;est difficile avec la pluie
+et la fatigue. Plus on avance, plus le taux de cassage de gueule sans
+gravité entre les cailloux du pierrier augmente.  Voyant s&amp;#39;approcher
+la nuit, on commence à flipper de ne pouvoir trouver d&amp;#39;endroit plat où
+se poser (on est genre au milieu de l&amp;#39;ascension).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour9-dark.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour9-dark-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finalement on arrive pas loin de la crête, et on trouve un endroit pas
+trop mal compte tenu de la situation. On décide de se poser, à moitié
+dans les nuages et dans la nuit qui tombe. Le vent souffle énormément,
+on est dans une cuvette et on craint de se retrouver mouillés au matin
+vu qu&amp;#39;il pleut toujours. Et oui, je suis toujours aigri car j&amp;#39;ai
+toujours les pieds mouillés.&lt;/p&gt;
+</description>
+                                <pubDate>Sat, 14 Sep 2013 00:00:00 +0200</pubDate>
+                                <link>http://mxs.sbrk.org//norway/2013/09/14/pizza.html</link>
+                                <guid isPermaLink="true">http://mxs.sbrk.org//norway/2013/09/14/pizza.html</guid>
+                        </item>
+                
+                        <item>
+                                <title>Jour 8: Vers les Fjords</title>
+                                <description>&lt;p&gt;On prend un méga petit déjeuner avant de remballer et de se diriger
+vers la route qui monte vers Åndalsnes (l&amp;#39;objectif final du voyage où
+nous attend un train dans quelques jours). En quète d&amp;#39;information, on
+va demander au magasin s&amp;#39;il y a des bus pour y aller, apparement
+non. Sur le parking du magasin il y a un bien bus scolaire qui attend,
+on hésite à lui demander mais on se dit qu&amp;#39;il ne doit pas aller bien
+loin. On décide de faire du stop jusqu&amp;#39;à Isfjorden, donc on suit la
+route en espérant tomber sur un Norvégien qui n&amp;#39;a pas peur de nous.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour8-route.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour8-route-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;La route monte. Beaucoup. Au bout de quelques kilomètres, on fait une
+pause. On descend le litre de coca restant pour gagner un peu de
+poids, et là, c&amp;#39;est le drame. Je réalise avec stupeur qu&amp;#39;on vient de
+perdre une occasion unique dans nos vies: faire du riz rond au coca en
+Norvège un 13 Septembre 2013. Je suis bien dégouté, presque autant que
+lorsque qu&amp;#39;on avait découvert après 35km de marche que le magasin
+dessiné sur la carte n&amp;#39;existait pas. Après plusieurs minutes à maudir
+tout et n&amp;#39;importe quoi et à shooter dans les gravillons innocents des
+environs, on repart avec des cookies dans l&amp;#39;estomac. (Note en
+provenance du Sébastien du futur qui a racheté le même riz rond et du
+coca pour tenter l&amp;#39;expérience quelques mois plus tard: tout a fini à
+la poubelle, rien n&amp;#39;y fait, le riz rond c&amp;#39;est de la saloperie).  Il
+s&amp;#39;avère que le stop en Norvège, ce n&amp;#39;est pas très efficace, on a du
+voir passer une vingtaine de voitures sans succès. Au loin on entend
+un bruit de moteur qui galère, et on voit débarquer... le bus scolaire
+du parking. On devrait être aigris, mais après le drame du riz au
+coca, plus rien ne peut atteindre notre intégrité mentale.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour8-courbe.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour8-courbe-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Quelques voitures plus loin, on abandonne l&amp;#39;idée du stop et on ressort
+la carte, de laquelle on doit être en dehors de quelques
+kilomètres. On devine que l&amp;#39;on devrait bientôt rencontrer un chemin
+qui devrait nous amener à Isfjorden, du coup on décide de repartir
+quelques jours dans les montagnes avec un petit goût d&amp;#39;aventure, qu&amp;#39;on
+avait oublié depuis le retour à la civilisation. On espère que le pied
+de Faltad ne va pas exploser à force de gonfler, car une fois là haut,
+on ne pourra pas faire de retour en arrière facilement.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour8-cabane.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour8-cabane-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Un petit ruisseau borde le chemin et j&amp;#39;en profite pour pêcher en
+marchant, je prends quelques truites qu&amp;#39;on relâche vu qu&amp;#39;on a fait le
+plein de provisions. Le temps a beaucoup changé avec l&amp;#39;altitude, il y
+a quelques heures on se croyait en plein été, là on est de retour dans
+les nuages gris, il pleut, tout est mouillé, et on voit à 50 mètres.
+On pose la tente sur ce qui ressemble à un lit de mousse (un des rares
+endroits qui a l&amp;#39;air de ne pas trop prendre l&amp;#39;eau dans le coin), à
+proximité d&amp;#39;un carrefour de chemins, un grand mot vu que c&amp;#39;est juste
+le chemin qui se sépare en deux. On va chercher du bois pour faire un
+feu lorsque la pluie commence à tomber, on décide le garder au sec en
+attendant que ça passe.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour8-tente.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour8-tente-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Mais ça dure, et on a faim, donc on fini par manger dans la tente en
+lisant et en écrivant. Le repas est typiquement norvégien: cacahuètes,
+chips à la sauce Besten Burger, cookies, chocolat, et wasa noyé de
+ketchup. La pluie se calme et Faltad va prendre de l&amp;#39;eau pour faire
+des pâtes. On a 1kg de ketchup donc on met la grosse dose, avant de
+s&amp;#39;endormir sous la pluie, en espérant ne pas se réveiller mouillés au
+petit matin (niark niark niark niark).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour8-miam.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour8-miam-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+                                <pubDate>Fri, 13 Sep 2013 00:00:00 +0200</pubDate>
+                                <link>http://mxs.sbrk.org//norway/2013/09/13/direction-les-fjords.html</link>
+                                <guid isPermaLink="true">http://mxs.sbrk.org//norway/2013/09/13/direction-les-fjords.html</guid>
+                        </item>
+                
+                        <item>
+                                <title>Jour 7: Ja ja ja</title>
+                                <description>&lt;blockquote&gt;
+&lt;p&gt;Apparement mentalement affecté par la désillusion de la veille,
+j&amp;#39;ai protesté en ne prenant que des photos ratées. Pour compenser j&amp;#39;ai
+fait des dessins à la place aux endroits où ça manquait
+d&amp;#39;illustration, désolé, vraiment.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;On est à Eikesdalen et on se réveille très tard (comprendre: on a mal
+partout et il faut faire des efforts surhumains pour s&amp;#39;extirper de la
+tente). Après quelques minutes de lutte vient la citation du jour de
+Faltad: &amp;quot;Maintenant, je sais ce que c&amp;#39;est d&amp;#39;être vieux&amp;quot;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour7-eglise.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour7-eglise-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Faltad découvre qu&amp;#39;il a mal à un pied et que sa chaussette est devenue
+trop petite, donc on ne sait pas trop ce qu&amp;#39;on va faire aujourd&amp;#39;hui. À
+l&amp;#39;idée d&amp;#39;errer comme deux zombies boiteux dans une ville déserte en
+grognant &amp;quot;choooocolat, chooocoolat&amp;quot;, je sors la carte sur laquelle il
+y a une cascade à quelques kilomètres. C&amp;#39;est un cul-de-sac mais
+j&amp;#39;espère qu&amp;#39;on aura le temps d&amp;#39;y aller. On s&amp;#39;échappe de la forêt pour
+rejoindre le chemin qui borde le camping désert et l&amp;#39;on croise un
+américain qui a l&amp;#39;air un peu surpris de voir deux péons sortir d&amp;#39;une
+forêt dans un lieu désert où il n&amp;#39;a du croiser personne depuis deux
+jours. Il a une pomme dans sa main, à la vue de laquelle mon ventre
+fait un bruit bizarre. Une réaction se produit alors: mon cerveau est
+attaqué de toute part part des signaux électriques, et re-évalue alors
+la situation. Ce n&amp;#39;est pas un américain, c&amp;#39;est une pomme. Une pomme
+juteuse qui cherche son chemin, accessoirement portée par un
+américain. On lui indique la route à prendre et on se pose sur une
+table.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour7-pomme.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour7-pomme-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On mange en face du lac (couscous, moutarde) et on médite sur la
+suite. Je décide d&amp;#39;aller vers la cascade pendant que Faltad avance
+dans l&amp;#39;écriture de son carnet. Je dois faire assez vite si on veut
+espérer faire quelque chose de notre journée (il est déjà 13h quand je
+pars). Il fait toujours aussi beau qu&amp;#39;hier, il y a quelques framboises
+sur les talus qui bordent le chemin, elles ne font pas long
+feu. J&amp;#39;arrive au niveau d&amp;#39;un parking désert avec quelques tables, et
+un comptoir qui doit être assailli l&amp;#39;été par des gamins norvégiens
+mangeurs de glaces. Mais là, c&amp;#39;est vide, personne. Un panneau indique
+la direction à prendre pour accéder à la cascade, il faut monter à
+travers un sous-bois. Après une demi-heure de marche, je recroise
+l&amp;#39;américain sans sa pomme, avec qui je discute. Apparement la
+compagnie électrique a coupé la cascade et il n&amp;#39;y a pas grand chose à
+voir, du coup je redescends avec lui et on a une discussion
+intéressante sur la vie, l&amp;#39;univers, et le reste. C&amp;#39;est un retraité qui
+voyage plusieurs fois par an, il est parti d&amp;#39;Oslo en voiture, a été au
+delà du cercle polaire, et apparement déçu du grand nord, a décidé de
+regagner la route qui longe les Fjords un peu plus à l&amp;#39;ouest.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour7-eikesdalen.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour7-eikesdalen-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;De retour avec Faltad, on tourne en rond pendant une heure avant de se
+décider à faire du stop en vue d&amp;#39;Eresfjord, qui est a une trentaine de
+kilomètres de là où on est. Il y a quelque chose comme une voiture
+toute les demi-heures, et on a de la chance car à la deuxième, on
+embarque avec un norvégien du coin qui nous apprend qu&amp;#39;à Eresfjord, il
+y a un magasin (une once d&amp;#39;espoir renait, chocolat, bière, tout
+ça). Il a un accent assez marrant, il entrecoupe toutes ses phrases de
+Ja ja ja. Il nous apprend qu&amp;#39;un Musk Ox (ça se prononce en fait
+mosskoux) a quitté le parc de Dovrefjell, et a été shooté par les
+habitants du village. On déconne pas avec les pokémons par ici Ja ja
+ja. On parle de basejump (les collines du coin sont réputées pour)
+ainsi que de Chamonix où il passe parfois ses vacances. Il nous dépose
+à 3 kilomètres du magasin en refusant poliment l&amp;#39;argent qu&amp;#39;on lui
+propose.&lt;/p&gt;
+
+&lt;p&gt;12 Septembre 2013, quelque part en Norvège, à proximité d&amp;#39;Eresfjord.
+Dans 45 minutes, le seul magasin des environs fermera ses
+portes. Trois kilomètres séparent nos deux intrépides héros de ce lieu
+magique où poussent des forêts de chocolat. S&amp;#39;engage alors le contre
+la montre de leur vie, leur équilibre mental en dépend.  Je crois
+qu&amp;#39;on a jamais marché aussi vite car on y est en 20 minutes. C&amp;#39;est la
+délivrance. On rentre dans le magasin, sentiment de déjà vu: on
+transpire de partout, on sème de la terre, on parle français, on porte
+des regards furtifs sur tout ce qui peut se manger. Bref, on est
+louches, et les gens nous regardent bizarrement. Liste de courses:
+saucisses, cacahuètes, ketchup, sauce inconnue, coca, chips, pain,
+pain, cookies, cookies, cookies, chocolat, chocolat, chocolat,
+chocolat. La canette de bière la moins chère en magasin étant à 6
+euros, on préfère prendre encore plus de chocolat à la place.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour7-chocolat.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour7-chocolat-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;C&amp;#39;est difficile de décrire ce que l&amp;#39;on ressent lorsque l&amp;#39;on mange du
+pain frais garni de cacahuètes et de chocolat après quelques journées
+à gargouiller et à maudir l&amp;#39;humanité en mastiquant du couscous. C&amp;#39;est
+trop bien, vraiment. On pose la tente pas loin de la rivière Eira qui
+traverse Eresjford, et on finit cette belle journée en grillant des
+saucisses au bord de l&amp;#39;eau, avant de s&amp;#39;endormir, rassasiés.&lt;/p&gt;
+</description>
+                                <pubDate>Thu, 12 Sep 2013 00:00:00 +0200</pubDate>
+                                <link>http://mxs.sbrk.org//norway/2013/09/12/ja-ja-ja.html</link>
+                                <guid isPermaLink="true">http://mxs.sbrk.org//norway/2013/09/12/ja-ja-ja.html</guid>
+                        </item>
+                
+                        <item>
+                                <title>Jour 6: Un raccourci vers les champignons</title>
+                                <description>&lt;p&gt;On se réveille à quelques mètres du lac qui est plat comme un
+miroir. Il fait froid et il y a une pluie fine, on en profite quand
+même pour se laver rapidement avant de repartir à l&amp;#39;aventure. Le mot
+aventure a aujourd&amp;#39;hui pour signification &amp;quot;11 cases plus loin sur la
+carte où est dessiné un magasin&amp;quot; (petit rappel pour ceux qui
+débarquent, une case sur la carte correspond à environs 2 km à vol
+d&amp;#39;oiseau, soit un peu plus de la distance parcourue par un escalator
+en 1 heure 15). Un gribouilli sur mon carnet présage qu&amp;#39;en fait c&amp;#39;est
+pas du tout 11 cases, mais il est 9 heures du matin, on a plus grand
+chose de bon à manger à part du riz et du couscous, et on veut du
+chocolat: nos capacités intellectuelles permettant d&amp;#39;évaluer les
+distances sont biaisées.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour6-lac.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour6-lac-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On traverse le barrage et on suit une petite route de graviers qui
+prend la direction des nuages dans lesquels on ne voit pas au delà de
+50 mètres. Après une brève pause riche en riz et en hamster roux
+adepte de la technique du &amp;quot;si je ne te vois pas, tu ne me vois pas&amp;quot;,
+une voiture s&amp;#39;arrête devant nous. La fenêtre se baisse, à l&amp;#39;intérieur,
+un Norvégien avec des lunettes de soleil rondes (il fait toujours tout
+gris, et nous on voit toujours à 50 mètres): il ressemble à Sérafin
+dans Matrix, c&amp;#39;est un peu la classe. Il propose de nous emmener mais
+on refuse poliment, genre on est pas à 10 cases prêt. Il nous répond
+que &amp;quot;it&amp;#39;s a long way down, are you sure?&amp;quot;, avant de disparaître dans
+les nuages. Il nous faut environs 30 secondes pour admettre qu&amp;#39;on est
+des gros débiles: on regrette de ne pas avoir embarqué.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour6-cabane.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour6-cabane-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Faltad a la bonne idée de penser à un petit paquet de bonbons issu de
+sa pochette surprise avec plein de petits nounours innocents tout
+mignons, qu&amp;#39;on écrase sans pitié sous nos dents affamées, à raison
+d&amp;#39;un tous les kilomètres histoire de se motiver.&lt;/p&gt;
+
+&lt;p&gt;On avait prévu de prendre quelques raccourcis pour gagner des cases, et
+on arrive au niveau du premier: de la route part un sentier qui
+chute dans les profondeurs de la vallée, mais on a aucune idée de ce
+qu&amp;#39;il y a derrière: les nuages sont plus denses et on voit à 10
+mètres. On a recouvert nos sacs avec les couvres-pluie couleurs
+flashy. On ressemble à des tortues echapées de Mario qui avancent
+péniblement au milieu des arbustres, s&amp;#39;arrêtent en permanence pour
+essayer de deviner les formes des cairns dans la brûme, et manquent de
+se casser les dents tous les hectomètres. Une fois le chemin retrouvé,
+on abandonne définitivement l&amp;#39;idée des raccourcis. Les raccourcis, c&amp;#39;est
+nul. On arrive à la frontière du parc naturel: on quitte la région de
+Dovrefjell avec un petit sentiment de nostalgie, immédiatement noyé dans
+l&amp;#39;idée qu&amp;#39;on se fait de la bière et du chocolat qui nous attendent à
+Eikesdalen.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour6-shortcut.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour6-shortcut-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Quelques nounours innocents plus loin, le chemin arrive en haut d&amp;#39;une
+colline, on doit être à environs 1000m d&amp;#39;altitude, 1 case plus loin
+sur la carte l&amp;#39;altitude tombe à 0. Comme la plupart des routes de
+montagnes, ça descend en lacets et en distance effective, c&amp;#39;est
+beaucoup plus d&amp;#39;une case. On avait pas fait ce calcul le matin en
+partant, et on doit accélérer si on veut arriver suffisament tôt à
+Eikesdalen (chocolat, bière). Le chemin coupe la montagne par un
+tunnel de quelques centaines de mètres et on se retrouve dans le noir.
+On cherche désespérément une source de lumières dans nos sacs, et
+Faltad trouve sa lampe qu&amp;#39;il faut tourner à fond pour voir à 50
+centimètres. Ça fait un gros bordel qui résonne dans le tunnel, on
+voit toujours pas plus loin et on change d&amp;#39;approche après avoir fait
+quelques mètres: on prend une vraie lampe.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour6-topofthepop.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour6-topofthepop-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Une bonne heure plus tard on est en bas, la densité de nounours innocents
+au kilomètre carré dans les environs a du se voir divisé par trois. On a
+mal partout, mais il n&amp;#39;y a plus de nuages, il fait beau et on continue
+sur une route goudronnée (la première depuis le départ, c&amp;#39;est la
+classe). La route va tranquillement vers Eikesdalen, encerclée par deux
+montagnes desquelles s&amp;#39;échappent des cascades. Petit à petit la route se
+retrouve bordée de champs avec des moutons, je m&amp;#39;arrête quelques
+secondes pour me resituer, je regarde autours de moi avant de balancer:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Hey c&amp;#39;est drôle, là comme ça, j&amp;#39;ai vraiment pas du tout
+l&amp;#39;impression d&amp;#39;être en Norvège, on pourrait très bien être en France
+ça serait pareil.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Quelques secondes plus tard, on entend un bruit bizarre qui vient de
+loin en face. Roll roll roll roll... Hein? Roll roll roll roll...  Et
+on voit débarquer un Norvégien avec des skis à roulette et des batons
+qui nous croise en lançant un &amp;quot;Hej!&amp;quot;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Bon ok, on est bien en Norvège.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour6-roll.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour6-roll-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On marche de plus en plus vite à l&amp;#39;approche du village. Plus que
+quelques kilomètres avant qu&amp;#39;on ne découvre framboises sur le bord de
+la route, qu&amp;#39;on aurait bien voulu déguster tranquillement s&amp;#39;il n&amp;#39;était
+pas 16h30 et qu&amp;#39;il nous restait 5km à faire à fond pour espérer arriver
+avant la fermeture hypothétique du magasin. On en mange quelques unes
+rapidement pour préserver encore quelques oursons.&lt;/p&gt;
+
+&lt;p&gt;Vers 17h on arrive enfin à Eikesdalen (bière, chocolat). On est
+épuisés, on a fait environs 35 km depuis le matin et on découvre un
+village où il y a plus de tracteurs que de voitures: on s&amp;#39;imagine
+tomber sur une usine à la Aaltra, malheureusement on n&amp;#39;en verra
+pas. Maison, tracteur, maison, jardin, cabane, arbre, maison, maison,
+maison, église, tracteur, camping vide (le premier), maison, lac, le
+chien qui gueule, la rivière, camping vide (le deuxième), la rivière,
+le chien qui gueule toujours, lac, maison, camping toujours vide (le
+premier), tracteur. Hein? On refait à pied 2/3 fois ce parcours sans
+croiser personne. Le village est désert, le magasin sur la carte qui
+n&amp;#39;existe pas doit probablement être une blague de cartographe très
+prisée dans le milieu, on a mangé tous les oursons innocents, on est à
+5 km des framboises, on a encore plus mal partout, on a salivé pendant
+des heures sur du chocolat imaginaire, en se désaltérant avec de la
+bière fraîche, au lieu de ça on va avoir du couscous avec de la
+moutarde et de l&amp;#39;eau désinfectée avec des capsules de chlore et on
+aura toujours mal partout et on aura pas d&amp;#39;oursons à écraser sous les
+dents et encore moins de chocolat et
+�h�^T7ƫvZ(w֫Q�J�T&amp;quot;�w�$��C�h���)��No*�� Segmentation fault&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour6-cool.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour6-cool-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Quelques heures plus tard, après être passé par les 5 étapes de
+Kübler-Ross (déni, colère, marchandage, dépression, acceptation), on
+machouille du couscous au bord du lac en se disant que c&amp;#39;est quand même
+l&amp;#39;endroit le plus classe du monde. On pose la tente dans une forêt
+derrière un talus, à quelques mètres du second camping, genre on va
+tenter de faire baisser le PIB de la Norvège en refusant délibérement de
+ne pas payer le camping car on est aigris.&lt;/p&gt;
+</description>
+                                <pubDate>Wed, 11 Sep 2013 00:00:00 +0200</pubDate>
+                                <link>http://mxs.sbrk.org//norway/2013/09/11/shortcut.html</link>
+                                <guid isPermaLink="true">http://mxs.sbrk.org//norway/2013/09/11/shortcut.html</guid>
+                        </item>
+                
+                        <item>
+                                <title>Jour 5: Charles Ingalls</title>
+                                <description>&lt;p&gt;Il fait beau et on décampe assez tard après avoir lavé quelques
+fringues qu&amp;#39;on accroche sur les sacs comme on peut pour que ça sèche.
+On a l&amp;#39;air cons avec nos calbutes et nos chaussettes qui pendouillent
+dans le dos, mais ça fonctionne. On avait pas prévu la suite du
+voyage, et la tablette de chocolat qui se trouvait dans ma pochette
+suprise ouverte l&amp;#39;avant-veille a un effet déterminant pour la suite:
+avant, lorsque je regardais la carte, les petits carrés censés
+représenter des maisons représentaient effectivement des maisons,
+maintenant ce sont des carrés de chocolat avec une voix toute mimi qui
+dit: &amp;quot;mange moi mange moi mange moi mange moi s&amp;#39;il te plait mange
+moi&amp;quot;.  Il y a des refuges de dessinés sur la carte à quelques
+kilomètres et on espère en trouver là-bas (du chocolat, pas des
+refuges).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour5-beau.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour5-beau-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On descend en altitude et on suit un chemin dans la forêt qui borde le
+torrent ; on passe à coté d&amp;#39;autoroutes à fourmis qui se rejoignent
+dans des fourmillières d&amp;#39;un mètre de haut, preuve qu&amp;#39;en hiver tout ne
+doit pas être gelé dans cette vallée. On continue pendant quelques
+kilomètres avant d&amp;#39;arriver en face d&amp;#39;une maison perdue, où nous attend
+un Norvégien qui ressemble vaguement à Charles Ingalls, en vieux, un
+doigt en moins, un téléphone portable en plus. On a une conversation
+intéressante:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Charles&lt;/em&gt;: Fri bi de be huh!&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Moi&lt;/em&gt; (en anglais): Désolé on ne parle pas norvégien.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Charles&lt;/em&gt; (en quelque chose qui ressemble à de l&amp;#39;allemand mais qui est du norvégien): Vous comprenenez ce que je dis?&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Faltad&lt;/em&gt; (en allemand): Oui, un peu.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Charles&lt;/em&gt; (toujours en norvégien): Fri bi de be huh beeeh?&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Faltad&lt;/em&gt; (en allemand): Quoi?&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Charles&lt;/em&gt; (toujours en norvégien): Fri bi de be huh beeeh huuu?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Silence génant de quelques secondes. D&amp;#39;un coup, Charles pête un cable
+et se met à imiter quelque chose, il y met tout son coeur, mais on ne
+comprend pas du tout ce qu&amp;#39;il se passe, et lui ne comprend pas du
+tout ce qu&amp;#39;on comprend. Tout le monde se regarde à tour de rôle,
+chaque regard exprimant un appel à l&amp;#39;aide du genre: &amp;quot;s&amp;#39;il te plait
+n&amp;#39;importe qui, fais quelque chose pour qu&amp;#39;on sorte de cette situation
+bizarre&amp;quot;.&lt;/p&gt;
+
+&lt;p&gt;Silence génant de quelques secondes. Charles, décidément en forme, a
+une idée, il change sa stratégie et se met à imiter quelque chose de
+différent! Cette fois avec de grands gestes et plein de mots, parmis
+lesquels je crois comprendre &amp;quot;paysage&amp;quot;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Moi&lt;/em&gt; (en anglais, fier d&amp;#39;avoir cru comprendre un truc): Le paysage? C&amp;#39;est super beau!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Silence génant de quelques secondes. Les regards. Au secours.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Tout le monde&lt;/em&gt; (dans un mix de norvégien, d&amp;#39;allemand, et anglais): Tchuss!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour5-maison.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour5-maison-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On continue notre descente et on traverse le torrent grâce à un pont
+en bois probablement entretenu par Charles. Merci Charles. Plus bas se
+trouve un petit village quasi-désert où l&amp;#39;on croise deux bûcherons de
+la région qui travaillent dans la forêt, on a une petite discussion
+légèrement plus productive qu&amp;#39;avec ce bon vieux Charles.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour5-pont.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour5-pont-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Point de chocolat dans le coin, on s&amp;#39;arrête pour manger des truites
+fumées qu&amp;#39;on avait gardées de la veille et que j&amp;#39;ai astucieusement
+placées au fond de mon sac, endroit stratégique déjà éprouvé dans le
+passé, où j&amp;#39;avais mis la pochette surprise et sur laquelle reposait 15
+kilos de bordel organisé. Les 15 kilos de bordel organisé sont
+toujours là, et les truites ressemblent à de la bouillie grise avec
+des arêtes, mais c&amp;#39;est bon. Avec du recul, on pense que Charles
+voulait savoir si on avait vu ses moutons dans la vallée. On en
+profite pour équilibrer les sacs au niveau du poids. Faltad réalise
+qu&amp;#39;il porte deux vieilles bouteilles de gaz incompatibles avec notre
+réchaud depuis le début du voyage, on décide de s&amp;#39;en débarasser comme
+c&amp;#39;est lourd et que ça ne passera jamais à l&amp;#39;aéroport au retour (note:
+on aurait pu avoir cette reflexion 5 jours plus tôt, mais apparement
+l&amp;#39;altitude nous rend plus vifs du cerveau). Il y a un refuge dans le
+village mais il est vide, Faltad y laisse les deux bouteilles sur le
+seuil de la porte avec une page arrachée d&amp;#39;un magazine qu&amp;#39;on avait
+gardé depuis l&amp;#39;aéroport:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Hej! I don&amp;#39;t need those 2 gas bottles anymore. So I let them here
+  and feel free to take them.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;quote-author&quot;&gt;Régis Robert &lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour5-regis.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour5-regis-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Contents de notre blague que personne ne comprendra, on reprend un peu
+d&amp;#39;altitude en grimpant sur un des flancs de la vallée. Arrivés en
+haut, on est toujours aussi contents de notre blagounette, et en plus
+d&amp;#39;être contents on a une vue dégagée sur toute la vallée. Du coup on
+est super contents.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour5-haut.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour5-haut-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On ouvre les pochettes surprises de Faltad et on y découvre des
+bonbons, du chocolat, et c&amp;#39;est trop bien. Il doit être environs 15h,
+et on décide de rusher pour les prochains refuges situés à une bonne
+dizaine de kilomètres, c&amp;#39;est plutôt débile mais on a pas peur.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour5-content.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour5-content-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On traverse une zone désertique apparement réputée pour la présence de
+rennes. Malheuresement on n&amp;#39;en verra pas, mais en échange on croisera
+plusieurs hamsters roux (oui, ça existe), un bois de renne qui faisait
+bien 5 kilos (le bois, pas le renne), et trois trekkeurs de type
+masculin. On enchaine vite et quelques kilomètres plus loin, après une
+pause, je découvre que mon genou gauche est moins résistant qu&amp;#39;il n&amp;#39;y
+parait, je ne peux pas le plier sans faire de grimaces et de bruits
+bizarres. On hésite à repartir, il me faudra 20 bonnes minutes à
+marcher comme un grand-père avant de pouvoir reprendre un rythme
+normal.&lt;/p&gt;
+
+&lt;p&gt;Petit à petit on retrouve de la végétation et on traverse une zone
+marécageuse. Il est environs 18h lorsque je fais une troublante
+découverte:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Hey goûte ça, c&amp;#39;est vraiment bon! Ça ressemble aux myrtilles qu&amp;#39;on
+  mange depuis 2 jours, sauf que c&amp;#39;est bon.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Il s&amp;#39;avère que ce sont des myrtilles, et que ce que l&amp;#39;on mange depuis
+le début n&amp;#39;en sont pas. Ces dernières étaient aigres et pas bonnes du
+tout, mais vu qu&amp;#39;on avait trop faim et qu&amp;#39;on était trop heureux de
+manger quelque chose de différent on s&amp;#39;y était fait sans broncher. En
+regardant mieux, on découvre une troisième sorte de baie qu&amp;#39;on a aussi
+du manger sans le savoir, qui ressemble à deux gouttes d&amp;#39;eau aux
+autres.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour5-myrtilles.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour5-myrtilles-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Une heure plus tard et toujours en vie, on arrive dans les environs du
+refuge et on tombe sur un chemin, on se dit qu&amp;#39;il n&amp;#39;y aura pas de
+chocolat car c&amp;#39;est trop tard pour trouver du chocolat. Il y a un autre
+carré de chocolat à quelques kilomètres à l&amp;#39;ouest, c&amp;#39;est là où on veut
+aller (on commence à se approcher des Fjords) donc on continue par
+là. On longe un lac à travers les nuages et on arrive au bord d&amp;#39;un
+village fantôme: plein de petites barraques estivales vides à la
+tombée de la nuit, l&amp;#39;ambiance est plutôt macabre.  On monte vite fait
+la tente dans le noir et on se prépare à partir tôt demain, en vue
+d&amp;#39;une ville située à 13 cases sur la carte (à vol d&amp;#39;oiseau environs 25
+kilomètres, mais comme on est pas des oiseaux ça sera beaucoup plus).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour5-reflexion.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour5-reflexion-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+                                <pubDate>Tue, 10 Sep 2013 00:00:00 +0200</pubDate>
+                                <link>http://mxs.sbrk.org//norway/2013/09/10/charles-ingalls.html</link>
+                                <guid isPermaLink="true">http://mxs.sbrk.org//norway/2013/09/10/charles-ingalls.html</guid>
+                        </item>
+                
+                        <item>
+                                <title>Jour 4: Rivendell</title>
+                                <description>&lt;p&gt;Mes notes sur cette cinquième journée commencent par:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;On va faire plus court aujourd&amp;#39;hui car j&amp;#39;ai deux jours de retard sur
+le carnet et qu&amp;#39;il fait faim et froid et fatigue et flemme, et que
+de toutes façons, mon moi du futur qui lit ces mots alignés avec
+horreur (bien au chaud et avec du café) n&amp;#39;y peut rien.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;... suivit de quelque chose d&amp;#39;illisible qui doit être un rire en
+langage du Mordor. Et il a raison, je ne peux malheureusement pas
+revenir dans le passé pour essayer de convaincre l&amp;#39;humanoïde à
+l&amp;#39;origine de ces mots de détailler un peu plus les aventures du jour
+en échange de chocolat, ou de quelconque source de nourriture autre
+que du riz rond, ou plus simplement et moins cher, de lui casser les
+dents.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour4-matin.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour4-matin-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On a quitté le pied du Snøhetta assez tôt pour continuer vers un
+endroit où il y a du vert sur la carte (probablement des arbres), ça
+nous évitera de perdre une heure à tourner en rond à essayer de
+déraciner tout ce qui a l&amp;#39;air de pouvoir brûler. Le paysage ressemble
+assez à ce qu&amp;#39;on a eu avant de franchir le Snøhetta, à savoir de la
+tundra rousse, sauf que c&amp;#39;est plus plat et qu&amp;#39;il n&amp;#39;y a pas de
+pokémons.  Le vert sur la carte, ça motive, et en 3h on fait 6 cases
+(unité de mesure qu&amp;#39;on a rapidement adopté, ça fait environs 12 km à
+vol d&amp;#39;oiseau). On retrouve des pierriers et on fait une pause face à
+un lac afin de déguster du riz rond, et on découvre qu&amp;#39;on a des
+sachets de thé. De là est venue l&amp;#39;idée tout simplement géniale de
+mettre des sachets de thé dans nos gourdes. Si on avait été un peu
+moins débiles, on aurait pu éviter quatres jours à se rincer la bouche
+avec le goût de chlore des pastilles purificatrices d&amp;#39;eau (ça a le nom
+impressionant d&amp;#39;un objet de quête, il n&amp;#39;en est rien).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour4-tundra.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour4-tundra-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On quitte le lac et on croise un couple de trekkeurs
+norvégiens/allemands qui vont vers le Snøhetta, les seules personnes
+que l&amp;#39;on croisera ce jour, on a une brève discussion avant de se
+séparer. Je réalise qu&amp;#39;ils vont devoir affronter dans quelques heures
+la montée du Snøhetta qu&amp;#39;on a descendu la veille en 4 heures: que du
+pierrier qui monte à fond sur 10 kilomètres:
+&lt;a href=&quot;http://www.youtube.com/watch?v=cOsqUta2ol4#t=45&quot;&gt;boune chance&lt;/a&gt;.
+On continue notre route et on arrive en haut d&amp;#39;un glacier qui fond
+dans une vallée, de là on aperçoit au fond le vert de la carte: des
+arbres qui bordent un torrent qui grossit avec des cascades qui
+sortent de partout. La descente du glacier est un peu casse gueule
+mais vaut le coût, ça ressemble à Rivendell, sans les elfes mais avec
+des traces de pokémons à la place.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour4-torrent.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour4-torrent-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Rétrospectivement c&amp;#39;est l&amp;#39;endroit le plus classe du monde où j&amp;#39;ai pu
+mettre les pieds. Comme il faut 2 jours de marche pour arriver dans
+cette vallée, il n&amp;#39;y a pas grand monde à part deux français avec une
+canne à pêche et du riz rond. On arrive dans la forêt vers 18 heures
+et on se pose. Je vais pêcher dans le torrent histoire de justifier
+les 2 kilos de matériel que je trimballe avec moi depuis le début, et
+je prends une dizaine de truites que l&amp;#39;on grille sur ce qu&amp;#39;on appelera
+LE méga feu (qui n&amp;#39;a rien d&amp;#39;un méga feu, mais vu qu&amp;#39;on l&amp;#39;alimente avec
+du bois et non avec des racines humides comme depuis le début, ça
+fonctionne mieux).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/norway/jour4-vallee.jpg&quot;&gt;&lt;img src=&quot;/assets/norway/jour4-vallee-thumb.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+                                <pubDate>Mon, 09 Sep 2013 00:00:00 +0200</pubDate>
+                                <link>http://mxs.sbrk.org//norway/2013/09/09/rivendell.html</link>
+                                <guid isPermaLink="true">http://mxs.sbrk.org//norway/2013/09/09/rivendell.html</guid>
+                        </item>
+                
+        </channel>
+</rss>
