@@ -214,10 +214,7 @@ module.exports = (grunt) ->
         command: "jekyll build"
 
       sync:
-        command: "rsync -avz --delete --progress <%= config.cfg.ignore_files %> <%= config.dist %>/ <%= config.cfg.remote_host %>:<%= config.cfg.remote_dir %> > rsync.log"
-
-      s3:
-        command: "s3cmd sync -rP --guess-mime-type --delete-removed --no-preserve --cf-invalidate --exclude '.DS_Store' <%= config.cfg.static_files %> <%= config.cfg.s3_bucket %>"
+        command: "rsync -cravz --progress --filter 'P public' --delete _site/ mxs@mxs.sbrk.org:www"
 
     concurrent:
       options:
@@ -296,7 +293,6 @@ module.exports = (grunt) ->
       "shell:dist"
       "concurrent:dist"
       "smoosher"
-      "usebanner"
       "clean:postDist"
       "reset"
     ]
@@ -304,10 +300,6 @@ module.exports = (grunt) ->
   grunt.registerTask "sync", "Build site + rsync static files to remote server", [
     "build"
     "shell:sync"
-  ]
-
-  grunt.registerTask "s3", "Sync image assets with `s3cmd`", [
-    "shell:s3"
   ]
 
   grunt.registerTask "default", "Default task aka. build task", [
