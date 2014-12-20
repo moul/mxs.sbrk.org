@@ -214,7 +214,7 @@ module.exports = (grunt) ->
         command: "jekyll build"
 
       sync:
-        command: "rsync -cravz --progress --filter 'P public' --delete _site/ mxs@mxs.sbrk.org:www"
+        command: "rsync -cravz --progress --filter 'P pub*' --delete _site/ mxs@mxs.sbrk.org:www"
 
     concurrent:
       options:
