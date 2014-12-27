@@ -10,7 +10,7 @@ Number I'm often looking for.
 
 ## Film processing
 
-_This numbers are for a 600ml tank that can develop 2 films at a time._
+_These numbers are for a 600ml tank that can develop 2 films at a time._
 
 ### Products needed for 1 film
 
