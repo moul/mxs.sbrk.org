@@ -45,6 +45,7 @@ desc: <b>or</b> links that I kind of like
  - [Go at Google: Language Design in the Server of Software Engineering](http://talks.golang.org/2012/splash.article)
  - [Profiling Go programs](http://blog.golang.org/2011/06/profiling-go-programs.html)
  - [Rewriting from scratch](http://onstartups.com/tabid/3339/bid/97052/Screw-You-Joel-Spolsky-We-re-Rewriting-It-From-Scratch.aspx)
+ - [About Traceroute](https://major.io/wp-content/uploads/2012/06/RAS_Traceroute_Book_Format.pdf)
 
 ## Tools
 
